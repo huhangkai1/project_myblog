@@ -26,14 +26,14 @@
 <body>
     <!-- 引入导航栏 -->
     {% include 'header.html' %}
-    <br><br>
-    <!-- 预留具体页面的位置 -->
-    {% block content %}{% endblock content %}
+    <div class="col-md-offset-2 col-lg-offset-3 col-md-8 col-lg-6">
+        <!-- 预留具体页面的位置 -->
+        {% block content %}{% endblock content %}
+    </div>
+    <div class="col-md-2 col-lg-3"></div>
     <!-- 引入注脚 -->
     {% include 'footer.html' %}
-
-
-    <<!-- 如果要使用Bootstrap的js插件，必须先调入jQuery -->
+    <!-- 如果要使用Bootstrap的js插件，必须先调入jQuery -->
     <script src="{% static 'jquery/jquery-3.3.1.js' %}"></script>
     <!-- 包括所有bootstrap的js插件或者可以根据需要使用的js插件调用　-->
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>

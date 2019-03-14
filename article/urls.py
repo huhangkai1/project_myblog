@@ -8,5 +8,5 @@ app_name = 'article'
 urlpatterns = [
     path('index', views.article_index, name='article_index'),
 
-
+    path('', views.article_index, name='article_index'),
 ]
