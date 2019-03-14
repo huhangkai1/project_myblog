@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!-- 网站主语言 -->
+<html lang="zh-cn">
+
+<head>
+    <!-- 网站采用的字符编码 -->
+    <meta charset="utf-8">
+    <!-- 载入静态文件 -->
+    {% load staticfiles %}
+    <!-- 网页图标 -->
+    <link REL="SHORTCUT ICON" HREF="{% static 'images/favicon.ico' %}"/>
+    <!-- 在IE运行最新的渲染模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- 初始化移动浏览器 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 标题 -->
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- 引入bootstrap的css文件 -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+
+
+</head>
+
+<body>
+    <!-- 引入导航栏 -->
+    {% include 'header.html' %}
+    <br><br>
+    <!-- 预留具体页面的位置 -->
+    {% block content %}{% endblock content %}
+    <!-- 引入注脚 -->
+    {% include 'footer.html' %}
+
+
+    <<!-- 如果要使用Bootstrap的js插件，必须先调入jQuery -->
+    <script src="{% static 'jquery/jquery-3.3.1.js' %}"></script>
+    <!-- 包括所有bootstrap的js插件或者可以根据需要使用的js插件调用　-->
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+</html>
