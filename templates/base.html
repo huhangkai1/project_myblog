@@ -26,11 +26,11 @@
 <body>
     <!-- 引入导航栏 -->
     {% include 'header.html' %}
-    <div class="col-md-offset-2 col-lg-offset-3 col-md-8 col-lg-6">
+    <div class="col-md-offset-1 col-lg-offset-2 col-md-10 col-lg-8">
         <!-- 预留具体页面的位置 -->
         {% block content %}{% endblock content %}
     </div>
-    <div class="col-md-2 col-lg-3"></div>
+    <div class="col-md-1 col-lg-2"></div>
     <!-- 引入注脚 -->
     {% include 'footer.html' %}
     <!-- 如果要使用Bootstrap的js插件，必须先调入jQuery -->

@@ -1,3 +1,8 @@
 from django.contrib import admin
+from . import models
 
-# Register your models here.
+# 注册ArticlePost加入到admin中
+admin.site.register(models.ArticlePost)
+
+admin.site.register(models.Classification)
+

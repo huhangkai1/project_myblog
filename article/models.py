@@ -5,6 +5,15 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 
+# 分类标签
+class Classification(models.Model):
+    category = models.CharField(max_length=10)
+
+    def __str__(self):
+        # 将文章的标题返回
+        return self.category
+
+
 # 博客的文章数据模型
 class ArticlePost(models.Model):
 
@@ -18,7 +27,10 @@ class ArticlePost(models.Model):
     body = models.TextField()
 
     # 分类
-    # 浏览量
+    category = models.ForeignKey(Classification, on_delete=models.CASCADE)
+
+    # 图片
+    img = models.ImageField(upload_to='images')
 
     # 文章创建时间。参数default=timezone.now 指定创建参数时默认写入当前时间。
     created = models.DateTimeField(default=timezone.now)
@@ -35,4 +47,6 @@ class ArticlePost(models.Model):
     def __str__(self):
         # 将文章的标题返回
         return self.title
+
+
 

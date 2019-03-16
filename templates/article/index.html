@@ -5,19 +5,69 @@
 
 <!-- 内容 block -->
 {% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-9 col-lg-9">
+            {% for article in articles %}
+            <div class="media">
+              <div class="media-left">
+                <a href="/static/{{ article.img }}">
+                  <img class="media-object" src="/static/{{ article.img }}" alt="{{ article.title }}" width="300" height="300">
+                </a>
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading">{{ article.title }}</h4>
+                    <p>{{ article.body|slice:'100' }}...</p>
+                    <p>
+                        <span class="glyphicon glyphicon-tags" aria-hidden="true"><a target="_blank" href="##">{{ article.category }}</a></span>
+                        <span class="glyphicon glyphicon-time" aria-hidden="true">{{ article.created }}</span>
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true">作者：{{ article.author }}</span>
+                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true">浏览（<a target="_blank" href="##">000</a>）</span>
+              </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="col-md-3 col-lg-3">
+            <div>
+                <iframe scrolling="no" src="https://tianqiapi.com/api.php?style=tw&skin=pitaya" frameborder="0" width="100%" height="500" allowtransparency="true"></iframe>
+            </div>
+            <div>
+                <h4 class="widget-title">站点搜索</h4>
+                <form role="search" method="get" action="http://www.tianshan277.com/">
+                    <div class="form-group">
+                         <input type="text" name="s" id="s" placeholder="Search…" class="form-control" x-webkit-speech="">
+                    </div>
+                </form>
+            </div>
+            <div>
+                <ul id="tabul" class="nav nav-tabs nav-justified visible-lg">
+                    <li class="active"><a href="#newest" data-toggle="tab" aria-expanded="true"> 最新文章</a></li>
+                    <li class=""><a href="#hot" data-toggle="tab" aria-expanded="false"> 热点文章</a></li>
+                    <li class=""><a href="#rand" data-toggle="tab" aria-expanded="false">随机文章</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade active in" id="newest">
+                        <ul class="list-group">
+                            <a class="list-group-item visible-lg" title="js 根据id取出数组中的对象" href="##" rel="bookmark"><i class="fa  fa-book"></i> js 根据id取出数组中的对象                            </a>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="hot">
+                        <ul class="list-group">
+                            <a class="list-group-item visible-lg" title="ECharts取消坐标轴刻度线,取消网格线,取消坐标轴,取消坐标值" href="##" rel="bookmark"><i class="fa  fa-book"></i> ECharts取消坐标轴刻度线,取消网格线,取消坐标轴,取消坐标值</a>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="rand">
+                        <ul class="list-group">
+                             <a class="list-group-item visible-lg" title="移动端背景固定方案" href="##" rel="bookmark"><i class="fa  fa-book"></i> 移动端背景固定方案                            </a>
+                         </ul>
+                    </div>
+                </div>
 
-<h1>Hello, world!1</h1>
-<h1>Hello, world!2</h1>
-<h1>Hello, world!</h1>
-<h1>Hello, world!</h1>
-<h1>Hello, world!</h1>
-<h1>Hello, world!</h1>
-<h1>Hello, world!</h1>
-<h1>Hello, world!</h1>
-<h1>Hello, world!</h1>
-<h1>Hello, world!</h1>
-<h1>Hello, world!</h1>
 
+            </div>
+        </div>
+    </div>
+</div>
 
 
 {% endblock content %}
