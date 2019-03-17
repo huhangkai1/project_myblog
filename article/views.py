@@ -17,28 +17,28 @@ def article_index(request):
 
 # 用户登录
 def article_login(request):
-    print("#########ok", request.method)
     if request.method == 'POST':
-        print("#########ok")
-        # loginForm = form.LoginForm(data=request.POST)
-        # print(loginForm)
-        # if loginForm.is_valid():
-        #     # 清洗出合法数据
-        #     data = loginForm.cleaned_data
-        #     user = authenticate(username=data['username'], password=data['password'])
-        #     if user:
-        #         login(request, user)
-        #         return redirect("article:article_index")
-        #     else:
-        #         print("账号或密码输入有误。请重新输入~")
-        #         # return HttpResponse("账号或密码输入有误。请重新输入~")
-        # else:
-        #     print("输入有误。请重新输入~")
-        #     # return HttpResponse("账号或密码输入有误。输入~")
-    elif request.method == 'GET':
-        loginForm = form.LoginForm()
-    return redirect("article:article_index")
+        loginForm = form.LoginForm(data=request.POST)
+        if loginForm.is_valid():
+            # 清洗出合法数据
+            data = loginForm.cleaned_data
+            print(data)
+            user = authenticate(username=data['username'], password=data['password'])
+            if user:
+                login(request, user)
+                return redirect("article:article_index")
+            else:
+                print("账号或密码输入有误。请重新输入~")
+                return HttpResponse("账号或密码输入有误。请重新输入~")
+        else:
+            print("输入有误。请重新输入~")
+            return redirect("article:article_index")
 
+
+# 用户登录
+def article_logout(request):
+    logout(request)
+    return redirect("article:article_index")
 
 
 

@@ -52,17 +52,16 @@
 
             <!--已经登录，显示用户名下拉框-->
             {% if user.is_authenticated %}
-
-
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  {{ user.username }}
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">删除用户</a>
-                  <a class="dropdown-item" href="#">退出登录</a>
-                </div>
-              </li>
+                <ul class="nav navbar-nav navbar-right">
+                    <li role="presentation" class="dropdown">
+                          <a href="##" data-toggle="dropdown" class="dropdown-toggle">{{ user.username }}<span class="caret"></span></a>
+                          <ul class="dropdown-menu">
+                              <li><a href="##">用户信息</a></li>
+                              <li><a href="##">删除用户</a></li>
+                              <li><a href="#logout" data-toggle="modal">退出登录</a></li>
+                          </ul>
+                    </li>
+                </ul>
             <!--如果未登录，显示登录按钮-->
             {% else %}
                 <ul class="nav navbar-nav navbar-right">
@@ -88,27 +87,28 @@
             </div>
             <div class="modal-body">
                 <form class="form-group" action="/article/login" method="POST">
-                        <div class="form-group">
-                            <label for="">用户名</label>
-                            <input class="form-control" type="text" placeholder="6-15位字母或数字">
-                        </div>
-                        <div class="form-group">
-                            <label for="">密码</label>
-                            <input class="form-control" type="password" placeholder="至少6位字母或数字">
-                        </div>
-                        <div class="form-group">
-                            <label for="">再次输入密码</label>
-                            <input class="form-control" type="password" placeholder="至少6位字母或数字">
-                        </div>
-                        <div class="form-group">
-                            <label for="">邮箱</label>
-                            <input class="form-control" type="email" placeholder="例如:123@123.com">
-                        </div>
-                        <div class="text-right">
-                            <button class="btn btn-primary" type="submit">提交</button>
-                            <button class="btn btn-danger" data-dismiss="modal">取消</button>
-                        </div>
-                        <a href="" data-toggle="modal" data-dismiss="modal" data-target="#login">已有账号？点我登录</a>
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="">用户名</label>
+                        <input class="form-control" type="text" placeholder="6-15位字母或数字">
+                    </div>
+                    <div class="form-group">
+                        <label for="">密码</label>
+                        <input class="form-control" type="password" placeholder="至少6位字母或数字">
+                    </div>
+                    <div class="form-group">
+                        <label for="">再次输入密码</label>
+                        <input class="form-control" type="password" placeholder="至少6位字母或数字">
+                    </div>
+                    <div class="form-group">
+                        <label for="">邮箱</label>
+                        <input class="form-control" type="email" placeholder="例如:123@123.com">
+                    </div>
+                    <div class="text-right">
+                        <button class="btn btn-primary" type="submit">提交</button>
+                        <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                    </div>
+                    <a href="" data-toggle="modal" data-dismiss="modal" data-target="#login">已有账号？点我登录</a>
                 </form>
             </div>
         </div>
@@ -127,22 +127,42 @@
                 <h1 class="text-center">登录</h1>
             </div>
             <div class="modal-body">
-                <form class="form-group" action="/article/login" method="POST">
-                        <div class="form-group">
-                            <label for="">用户名</label>
-                            <input class="form-control" type="text" placeholder="">
-                        </div>
-                        <div class="form-group">
-                            <label for="">密码</label>
-                            <input class="form-control" type="password" placeholder="">
-                        </div>
-                        <div class="text-right">
-                            <button class="btn btn-primary" type="submit">登录</button>
-                            <button class="btn btn-danger" data-dismiss="modal">取消</button>
-                        </div>
-                        <a href="" data-toggle="modal" data-dismiss="modal" data-target="#register">还没有账号？点我注册</a>
+                <form class="form-group" action="/article/login"  method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="">用户名</label>
+                        <input class="form-control" type="text" placeholder="" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="">密码</label>
+                        <input class="form-control" type="password" placeholder="" name="password">
+                    </div>
+                    <div class="text-right">
+                        <button class="btn btn-primary" type="submit">登录</button>
+                        <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                    </div>
+                    <a href="" data-toggle="modal" data-dismiss="modal" data-target="#register">还没有账号？点我注册</a>
                 </form>
             </div>
         </div>
     </div>
 </div>
+<!-- 退出登录确认 -->
+<div class="modal fade" id="logout">
+  <div class="modal-dialog">
+    <div class="modal-content message_align">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">提示信息</h4>
+      </div>
+      <div class="modal-body">
+        <p>您确认要退出登录吗？</p>
+      </div>
+      <div class="modal-footer">
+         <input type="hidden" id="url"/>
+         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+         <a href="{% url 'article:article_logout' %}" class="btn btn-default">确定</a>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
