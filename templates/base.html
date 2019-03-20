@@ -20,19 +20,21 @@
     <!-- 引入bootstrap的css文件 -->
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
     <!--<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
-
 </head>
 
 <body>
     <!-- 引入导航栏 -->
-    {% include 'header.html' %}
-    <div class="col-md-offset-1 col-lg-offset-2 col-md-10 col-lg-8">
-        <!-- 预留具体页面的位置 -->
-        {% block content %}{% endblock content %}
+    <div class="container-fluid">
+        <div class="row">
+            <header>{% include 'header.html' %}</header>
+        </div>
+        <div class="row">
+            <article>{% block content %}{% endblock content %}</article>
+        </div>
+        <div class="row">
+            <footer>{% include 'footer.html' %}</footer>
+        </div>
     </div>
-    <div class="col-md-1 col-lg-2"></div>
-    <!-- 引入注脚 -->
-    {% include 'footer.html' %}
 
     <!-- 如果要使用Bootstrap的js插件，必须先调入jQuery -->
     <script src="{% static 'jquery/jquery-3.3.1.js' %}"></script>

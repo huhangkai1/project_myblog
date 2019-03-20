@@ -8,9 +8,13 @@ app_name = 'article'
 urlpatterns = [
     # 博客主页
     path('index', views.article_index, name='article_index'),
+    # 写文章
+    path('create', views.article_create, name='article_create'),
+
 
     # 登录
     path('login', views.article_login, name='article_login'),
+    # 退出登录
     path('logout', views.article_logout, name='article_logout'),
 
     # # 文章详情

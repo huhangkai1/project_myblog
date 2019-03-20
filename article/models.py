@@ -28,13 +28,13 @@ class ArticlePost(models.Model):
     title = models.CharField(max_length=100)
 
     # 文章正文。保存大量文本用 models.TextField。
-    body = models.TextField()
+    body = models.TextField(blank=True)
 
     # 分类
     category = models.ForeignKey(Classification, on_delete=models.CASCADE)
 
     # 图片
-    img = models.ImageField(upload_to='images')
+    img = models.ImageField(upload_to='images', blank=True)
 
     # 文章创建时间。参数default=timezone.now 指定创建参数时默认写入当前时间。
     created = models.DateTimeField(default=timezone.now)
